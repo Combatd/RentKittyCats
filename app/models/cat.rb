@@ -3,7 +3,7 @@ include ActionView::Helpers::DateHelper
 
     validates :birth_date, :name, presence: true
     validates :color, presence: true
-    validates :sex, presence: true
+    validates :sex, presence: true, inclusion: { in: %w(M F) }
 
     def age
         years = Date.today.year - self.birth_date.year
