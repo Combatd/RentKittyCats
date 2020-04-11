@@ -23,3 +23,12 @@ This project is a rental website based on 99dresses, but oriented around cats!
     * ```text``` column describes memories the user has with ```Cat```
 * Timestamps
 * database-level NOT NULL constraints ```null: false``` and model-level presence validations ```presence: true```
+
+### Index/Show Pages
+* ```class CatsController < ApplicationController```
+* ```index``` page of all ```Cat```s
+    * Lists the cats and links to the show pages.
+* ```show``` page for one cat
+    * Shows the cat's attributes
+    * A ```table``` element with ```tr```, ```td```, ```th``` tags will
+    format the cat's information.
