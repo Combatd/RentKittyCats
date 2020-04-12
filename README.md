@@ -32,3 +32,6 @@ This project is a rental website based on 99dresses, but oriented around cats!
     * Shows the cat's attributes
     * A ```table``` element with ```tr```, ```td```, ```th``` tags will
     format the cat's information.
+* ```_form``` form partial utilized in ```index``` and ```show```
+    * ```cat``` local variable takes value of ```@cat```
+    * ```edit``` makes a PATCH request
