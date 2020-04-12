@@ -1,0 +1,42 @@
+<% if action == :edit %>
+    <% action_url = cat_url(cat) %>
+<% else %>
+    <% action_url = cats_url %>
+<% end %>
+
+<form action="<%= actin_url %>%" method="post">
+    <% if action == :edit %>
+        <input type="hidden" name="_method" value="PATCH">
+    <% end %>
+
+    <label for="name">Name</label>
+    <input id="name" type="text" name="cat[name]" value="<%= cat.name %>">
+
+    <br>
+
+    <label for="age">Age</label>
+    <input id="age" type="number" name="cat[age]" value="<%= cat.age %>">
+
+    <br>
+
+    <label for="sex">Sex</label>
+    <select id="sex" name="cat[sex]" >
+        <option disabled <%= cat.sex ? "" : "selected" %>>Make a Selection</option>
+        <option value="male" <%= cat.sex == "male" ? "selected" : "" %>>Male</option>
+        <option value="female" <%= cat.sex == "female" ? "selected" : "" %>>Female</option>
+    </select>
+
+    <br>
+
+    <label for="color">Color</label>
+    <input id="color" type="text" name="cat[color]" value="<%= cat.color %>">
+
+    <br>
+
+    <label for="description">Description</label>
+    <textarea name="cat[description]" id="" cols="30" rows="10">
+        <%= cat.description %>
+    </textarea>
+
+    <input type="submit" value="<%= action == :edit ? 'update cat' : 'add cat' %>" >
+</form>
