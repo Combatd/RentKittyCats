@@ -1,25 +1,32 @@
 class CatsController < ApplicationController
     def index
-
+        @cats = Cat.all
+        render :index
     end
 
     def show
+        @cat = Cat.find_by(id: params[:id])
 
+        if @cat
+            render :show
+        else
+            redirect_to cats_url
+        end
     end
 
-    def new
+    # def new
 
-    end
+    # end
 
-    def create
+    # def create
 
-    end
+    # end
 
-    def edit
+    # def edit
 
-    end
+    # end
 
-    def update
+    # def update
 
-    end
+    # end
 end
