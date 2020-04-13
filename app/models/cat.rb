@@ -5,6 +5,11 @@ include ActionView::Helpers::DateHelper
     validates :color, presence: true
     validates :sex, presence: true, inclusion: { in: %w(M F) }
 
+    has_many :rental_requests,
+        foreign_key: :cat_id,
+        class_name: :CatRentalRequest,
+        dependent: :destroy
+
     def age
         years = Date.today.year - self.birth_date.year
         months = Date.today.month - self.birth_date.month
