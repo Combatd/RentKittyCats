@@ -35,3 +35,20 @@ This project is a rental website based on 99dresses, but oriented around cats!
 * ```_form``` form partial utilized in ```index``` and ```show```
     * ```cat``` local variable takes value of ```@cat```
     * ```edit``` makes a PATCH request
+
+## Phase 2 - CatRentalRequest
+
+### Model
+* ```CatRentalRequest``` schema and model
+    * ```cat_id``` (integer)
+    * ```start_date``` (date)
+    * ```end_date``` (date)
+    * ```status``` (string), ```default: 'PENDING'```, can switch to
+        ```'APPROVED'``` or ```'DENIED'``` 
+* inclusion validates ```status```
+* ```null: false``` constraints, ```presence: true``` validations
+* Associations between ```CatRentalRequest``` and ```Cat```
+* ```dependent: :destroy``` prevents widowed ```CatRentalRequest``` upon destroying ```Cat```
+
+### Custom Validation
+```CatRentalRequests``` should not be valid if they overlap with an approved ```CatRentalRequest``` for the same cat. A single cat can't be rented out to two people at once!
