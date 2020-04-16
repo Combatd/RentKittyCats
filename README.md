@@ -52,3 +52,35 @@ This project is a rental website based on 99dresses, but oriented around cats!
 
 ### Custom Validation
 ```CatRentalRequests``` should not be valid if they overlap with an approved ```CatRentalRequest``` for the same cat. A single cat can't be rented out to two people at once!
+
+* ```CatRentalRequest#overlapping_requests``` gets all ```CatRentalRequest```s that overlap with the
+one we are trying to validate.
+* ```CatRentalRequest``` we are validating should not appear in list
+of ```#overlapping_requests```
+* The method returns the requests for the current ```Cat```
+* This method runs on saved and unsaved ```CatRentalRequest```s
+* Test Cases:
+    * A cat rental request starting on 02/25/17 and ending on 02/27/17.
+    * There is a overlap if another cat rental also starts on the same day (02/25/17).
+    * There is a overlap if another cat rental request starts on the return day (02/27/17).
+    * There is a overlap if another cat rental request starts between the start and end dates (02/26/17).
+
+```
+def overlapping_requests
+        CatRentalRequest,
+          where.not(id: self.id),
+          where(cat_id: self.cat_id),
+          where.not('start_date > :end_date OR end_date < :start_date',
+                start_date: self.start_date, end_date: self.end_date)
+ end
+```
+
+### Controller and New View
+* ```CatRentalRequests``` Controller, resources in ```config/routes.rb```
+* ```new.html.erb``` to create new requests
+* A dropdown will allow user to select ```Cat```, with the form uploading a cat id.
+* ```date``` input type selects start and end dates for request
+* ```create``` action
+* Cat show page will show existing requests
+
+## Phase 3: Approving/Denying Requests
