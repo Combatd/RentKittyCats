@@ -20,4 +20,8 @@ class CatRentalRequest < ApplicationRecord
         return if self.status == 'DENIED'
         errors[:cat] << "cannot process request" if overlapping_approved_requests.exists?
     end
+
+    def overlapping_pending_requests
+        overlapping_requests.where(status: 'PENDING')
+    end
 end
