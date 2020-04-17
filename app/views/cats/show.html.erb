@@ -14,4 +14,12 @@
         <td><%= @cat.birth_date %></td>
         <td><%= @cat.color %></td>
         <td><%= @cat.description %></td>
+
+    <h1>Current Rental Requests</h1>
+    <ul>
+        <% ordered_cats = @cat.rental_requests.order(:start_date) %>
+        <% ordered_cats.each do %>
+            <li>Start Date: <%= request.start_date %>, End Date: <% request.end_date %></li>
+        <% end %>
+    </ul>
 </table>
