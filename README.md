@@ -84,3 +84,31 @@ def overlapping_requests
 * Cat show page will show existing requests
 
 ## Phase 3: Approving/Denying Requests
+
+### ```approve!``` ```deny!``` methods
+* Helper method CatRentalRequest#overlapping_pending_requests
+* ```approve!``` changes ```CatRentalRequest``` instance status
+from ```"PENDING"``` to ```"APPROVED"```
+* ```save!``` instance into database, deny conflicting requests ```overlapping_pending_requests``` in
+single Rails ```transaction```.
+```
+    def approve!
+        CatRentalRequest.transaction do
+           self.status = "APPROVED"
+           self.save!
+            # deny conflicting requests
+           overlapping_pending_requests.each do |request|
+            request.status = "DENIED"
+            request.save!
+           end
+        end
+    end
+```
+* ```deny!``` method changes ```CatRentalRequest``` instance status
+from ```"PENDING"``` to ```DENIED```
+```
+   def deny!
+        self.status = "DENIED"
+        self.save!
+    end
+```
