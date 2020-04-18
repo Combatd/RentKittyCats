@@ -42,4 +42,8 @@ class CatRentalRequest < ApplicationRecord
         self.save!
     end
 
+    def pending?
+        self.status == "PENDING"
+    end
+
 end
