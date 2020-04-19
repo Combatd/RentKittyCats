@@ -112,3 +112,9 @@ from ```"PENDING"``` to ```DENIED```
         self.save!
     end
 ```
+### Add Buttons
+* ```Cat``` Show page has buttons to approve/deny rental requests.
+* ```approve``` ```deny``` member routes for ```cat_rental_requests```
+* Conditional logic will show/hide ```approve``` ```deny``` buttons
+* ```CatRentalRequest#pending?``` boolean method
+* CSS can be added to the currently existing view templates!
