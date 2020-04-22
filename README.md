@@ -11,6 +11,12 @@ This project is a rental website based on 99dresses, but oriented around cats!
     * Know how to use select and input HTML elements
 
 * Be able to add methods to a Rails model
+* Be able to create a user authentication system
+    * Know the user model's methods that are required for authentication
+        * ```reset_session_token```, ```password=```, ```is_password?```, ```find_by_credentials```
+* Know what it means to create and destroy a session
+* Know how cookies and sessions interact in a ```current_user``` method
+* Know how to access the current user from within a view
 
 ## Phase 1 - Cat
 
@@ -118,3 +124,7 @@ from ```"PENDING"``` to ```DENIED```
 * Conditional logic will show/hide ```approve``` ```deny``` buttons
 * ```CatRentalRequest#pending?``` boolean method
 * CSS can be added to the currently existing view templates!
+
+## Phase 4 - Users
+
+### Add a ```User``` model
