@@ -128,3 +128,11 @@ from ```"PENDING"``` to ```DENIED```
 ## Phase 4 - Users
 
 ### Add a ```User``` model
+* ```User``` ```user_name``` and ```password_digest```
+    * database constraints and model validations
+* ```session_token``` column
+    * ```presence: true``` and ```null: false```. ```after_iniitalize``` callback function will set token that is not already set.
+* ```User#reset_session_token!``` method will use ```SecureRandom``` to generate a token.
+* ```User#password=(password)``` setter method that writes the ```password_digest``` attribute with the hash of the given password.
+* ```#is_password?(password)``` method verifies a password.
+* ```::find_by_credentials(user_name, password)``` method returns the user with the given name if the password is correct.
