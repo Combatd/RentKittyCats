@@ -3,4 +3,5 @@ Rails.application.routes.draw do
   resources :cats, only: [:index, :show, :new, :create, :edit, :update, :destroy]
   resources :cat_rental_requests, only: [:new, :create, :approve, :deny]
   resources :users, only: [:new, :create]
+  resources :session, only: [:new, :create, :destroy]
 end
