@@ -136,3 +136,18 @@ from ```"PENDING"``` to ```DENIED```
 * ```User#password=(password)``` setter method that writes the ```password_digest``` attribute with the hash of the given password.
 * ```#is_password?(password)``` method verifies a password.
 * ```::find_by_credentials(user_name, password)``` method returns the user with the given name if the password is correct.
+
+### ```UsersController```, ```SessionsController```
+We need a ```UsersController``` with ```new```/```create``` actions and routes.
+Then we can build a ```SessionsController``` for authorization.
+* ```:session``` resource in ```routes.rb```
+    * ```new```, ```create```, ```destroy``` actions/resources
+* ```SessionsController#new``` needs ```new.html.erb```
+* ```SessionsController#create```
+    * Verify ```user_name/password```
+    * Reset ```User```'s ```session_token```
+    * ```session``` hash updated with ```session_token```
+    * Redirect user to ```CatsController#index```
+* Create all remaining views for these controllers.
+
+### Using the session
