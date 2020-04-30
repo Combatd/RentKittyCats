@@ -1,5 +1,6 @@
 class UsersController < ApplicationController
-    
+    before_action :already_signed_in
+
     def new
         user = User.new
         render :new
