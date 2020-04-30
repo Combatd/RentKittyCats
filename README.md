@@ -151,3 +151,16 @@ Then we can build a ```SessionsController``` for authorization.
 * Create all remaining views for these controllers.
 
 ### Using the session
+* ```ApplicationController#current_user``` looks up user with current session token
+    * ```helper_method :current_user``` makes it available in views
+* ```SessionsController#destroy```
+    * ```#reset_session_token``` called on ```current_user``` invalidates the old token if there is a ```current_user```, making sure that no one can steal the old token and login with it.
+    * ```:session_token``` is blanked out in the ```session``` hash
+* ```application.html.erb``` has a header at the top
+    * Shows username if signed in
+    * Shows login or logout button depending if a user is signed in
+* A new user logs in as soon as they register.
+* ```SessionsController#create``` factored out into ```ApplicationController#login_user!``` method to be used in ```UsersController```
+* In ```UsersController``` and ```SessionsController```, ```before_action``` callback redirects user to Cats index if the user tries to visit login/signup pages when already signed in.
+
+## Phase 5: Use ```current_user``` with ```Cat``` and ```CatRentalRequest```
