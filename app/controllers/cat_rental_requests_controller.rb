@@ -6,12 +6,13 @@ class CatRentalRequestsController < ApplicationController
     end
     
     def create
-        @cat = Cat.find_by(id: cat_rental_request_params[:cat_id])
-        @request = CatRentalRequest.new(cat_rental_request_params)
+        @rental_request = CatRentalRequest.new(cat_rental_request_params)
+        @rental_request.user_id = current_user.id
 
-        if @request.save
-            redirect_to cat_url(@cat)
+        if @rental_request.save
+            redirect_to cat_url(@rental_request.cat)
         else
+            flash.now[:errors] = @rental_request.errors.full_messages
             render :new
         end
     end
