@@ -3,6 +3,7 @@ class CatRentalRequest < ApplicationRecord
     validates :status, presence: true, inclusion: { in: %w(PENDING APPROVED DENIED).freeze }
 
     belongs_to :cat
+    belongs_to :user
 
     def overlapping_requests # SQL Queries only, not Ruby
         CatRentalRequest,
