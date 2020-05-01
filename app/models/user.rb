@@ -2,6 +2,9 @@ class User < ApplicationRecord
     validates :user_name, :password_digest, presence: true
     validates :password_digest, presence: { message: 'Password cannot be blank' }
 
+    has_many :cats
+    has_many :cat_rental_requests
+
     def reset_session_token!
         self.session_token = User.generate_session_token
         self.save!
