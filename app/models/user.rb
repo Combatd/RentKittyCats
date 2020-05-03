@@ -3,6 +3,8 @@ class User < ApplicationRecord
     
     validates :user_name, :password_digest, presence: true
     validates :password_digest, presence: { message: 'Password cannot be blank' }
+    
+    after_initialize :ensure_session_token
 
     has_many :cats
     has_many :cat_rental_requests
