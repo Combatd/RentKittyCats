@@ -19,4 +19,8 @@ class ApplicationController < ActionController::Base
     def login_user!(user)
         session[:session_token] = user.reset_session_token!
     end
+
+    def already_signed_in
+        redirect_to cats_url if current_user
+    end
 end
