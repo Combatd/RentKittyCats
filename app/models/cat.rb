@@ -1,9 +1,9 @@
 class Cat < ApplicationRecord
-include ActionView::Helpers::DateHelper
+     sinclude ActionView::Helpers::DateHelper
 
-    validates :birth_date, :name, presence: true
+    validates :birth_date, :name, :sex, :color, :user_id, presence: true
     validates :color, presence: true
-    validates :sex, presence: true, inclusion: { in: %w(M F) }
+    validates :sex, presence: true, inclusion: %w(M F)
     validates :user_id, uniqueness: true
 
     has_many :rental_requests,
