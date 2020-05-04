@@ -1,9 +1,12 @@
 class Cat < ApplicationRecord
     include ActionView::Helpers::DateHelper
 
+    # User will select from a constant set of colors
+    CAT_COLORS = %w(black white orange brown).freeze
+
     validates :birth_date, :name, :sex, :color, :user_id, presence: true
-    validates :color, presence: true
-    validates :sex, presence: true, inclusion: %w(M F)
+    validates :color, inclusion: CAT_COLORS
+    validates :sex, inclusion: %w(M F)
     validates :user_id, uniqueness: true
 
     has_many :rental_requests,
