@@ -1,5 +1,5 @@
 class Cat < ApplicationRecord
-     sinclude ActionView::Helpers::DateHelper
+    include ActionView::Helpers::DateHelper
 
     validates :birth_date, :name, :sex, :color, :user_id, presence: true
     validates :color, presence: true
