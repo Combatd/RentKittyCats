@@ -15,10 +15,6 @@ include ActionView::Helpers::DateHelper
         class_name: :User
 
     def age
-        years = Date.today.year - self.birth_date.year
-        months = Date.today.month - self.birth_date.month
-        days = Date.today.day - self.birth_date.day
-
-        time_ago = Time.now - years - months - days
+       time_ago_in_words(birth_date)
     end
 end
