@@ -164,3 +164,20 @@ Then we can build a ```SessionsController``` for authorization.
 * In ```UsersController``` and ```SessionsController```, ```before_action``` callback redirects user to Cats index if the user tries to visit login/signup pages when already signed in.
 
 ## Phase 5: Use ```current_user``` with ```Cat``` and ```CatRentalRequest```
+
+### Cats have an owner
+* ```user_id``` column on cats, index on ```user_id```
+* ```User``` has many ```cats``` (Owner has cat)
+* ```owner``` presence validation (not null)
+* ```CatsController#create``` ```user_id``` is set to ```current_user.id```
+
+The form submitter must be logged in or they couldn't view the form to begin with, so we can set cat.owner to the current_user without relying on any form inputs.
+
+* In the ```CatsController#edit``` ```CatsController#update``` actions,```before_action :user_owns_cat, only: [:edit, :update]```
+    * Instead of using Cat.find, search for the cat among only the ```current_user```'s cats with the ```User#cats``` association.
+    * Do a ```redirect_to``` in the filter if the user is not authorized.
+    * Redirection from inside a ```before_action``` cancels further processing of the request. The action will never be called.
+* On ```CatRentalRequestsController``` only the cat owner should be able to approve/deny.
+* On the Cat Show page, does not show the approve/deny buttons unless the user owns the cat.
+
+### CatRentalRequests have a requester
