@@ -181,3 +181,9 @@ The form submitter must be logged in or they couldn't view the form to begin wit
 * On the Cat Show page, does not show the approve/deny buttons unless the user owns the cat.
 
 ### CatRentalRequests have a requester
+* ```user_id``` column on ```CatRentalRequest``` records ID of requester
+    * index on foreign_key ```user_id```
+    * ```CatRentalRequest``` ```belongs_to``` ```User``` ```has_many```
+    * ```validates``` ```:requester``` on ```CatRentalRequest```
+* ```current_user``` is ```requester``` on ```CatRentalRequestController```
+* ```requester``` is displayed to each rental request on Cat Show Page
