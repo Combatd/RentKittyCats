@@ -18,6 +18,7 @@ class Cat < ApplicationRecord
         class_name: :User
 
     def age
-       time_ago_in_words(birth_date)
+       return time_ago_in_words(Time.now) if !birth_date
+        time_ago_in_words(birth_date)
     end
 end
