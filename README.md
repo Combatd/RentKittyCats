@@ -1,6 +1,6 @@
 # RentKittyCats
 
-This project is a rental website based on 99dresses, but oriented around cats!
+This project is a rental website based on 99dresses, but oriented around cats! It allows users to rent out their cats to other users, and the renters can accept / deny requests. Once a request has been accepted, overlapping requests are automatically denied, preventing new requests for that duration of time.
 
 ## Learning Goals
 * Be able to build a model with validations and default values
