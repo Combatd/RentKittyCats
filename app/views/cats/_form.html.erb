@@ -14,9 +14,13 @@
 
     <br>
 
-    <label for="age">Age</label>
-    <input id="age" type="number" name="cat[age]" value="<%= cat.age %>">
-
+     <label for="cat_birth_date">Birth date</label>
+    <input
+        type="date"
+        name="cat[birth_date]"
+        id="cat_birth_date"
+        value="<%= cat.birth_date %>">
+    
     <br>
 
     <label for="sex">Sex</label>
@@ -28,9 +32,17 @@
 
     <br>
 
-    <label for="color">Color</label>
-    <input id="color" type="text" name="cat[color]" value="<%= cat.color %>">
-
+    <label for="cat_color">Color</label>
+    <select name="cat[color]" id="cat_color">
+     <option disabled selected>-- select a color --</option>
+        <% Cat::CAT_COLORS.each do |color| %>
+            <option
+            <%= cat.color == color ? "selected" : "" %>
+            value="<%= color %>">
+            <%= color.upcase %>
+            </option>
+        <% end %>
+    </select>
     <br>
 
     <label for="description">Description</label>
