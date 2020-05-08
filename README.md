@@ -187,3 +187,8 @@ The form submitter must be logged in or they couldn't view the form to begin wit
     * ```validates``` ```:requester``` on ```CatRentalRequest```
 * ```current_user``` is ```requester``` on ```CatRentalRequestController```
 * ```requester``` is displayed to each rental request on Cat Show Page
+
+### Some things to add later
+* Make sure ```cat_rental_requests``` query is ```N``` not ```N + 1```
+
+There may need to be some changes to the sessions in order to handle logins from multiple browsers at the same time.
