@@ -15,7 +15,7 @@ CatRentalRequest.destroy_all
 last_year = Date.today.prev_year.year
 
 10.times do
-  u = User.create!(username: Faker::Name.name, password: "password")
+  u = User.create!(user_name: Faker::Name.name, password: "password")
   c = Cat.create!(
     user_id: u.id,
     name: Faker::Hipster.word,
