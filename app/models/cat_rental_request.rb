@@ -6,10 +6,10 @@ class CatRentalRequest < ApplicationRecord
     belongs_to :user
 
     def overlapping_requests # SQL Queries only, not Ruby
-        CatRentalRequest,
-          where.not(id: self.id),
-          where(cat_id: self.cat_id),
-          where.not('start_date > :end_date OR end_date < :start_date',
+        CatRentalRequest
+          .where.not(id: self.id)
+          .where(cat_id: cat_id)
+          .where.not('start_date > :end_date OR end_date < :start_date',
                 start_date: self.start_date, end_date: self.end_date)
     end
 
