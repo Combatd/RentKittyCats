@@ -1,9 +1,16 @@
-<h1>RentKittyCats</h1>
-
-   <ul>
+<section class="cat-index-holder">
+  <nav>
+    <h1>ALL OF THE CATS IN THE WORLD</h1>
+    <a href="<%= new_cat_url %>">Create a New Cat </a>
+  </nav>
+  <section class="cat-index">
     <% @cats.each do |cat| %>
-        <li><a href="<%= cat_url(cat) %>"><%= cat.name %></a></li>
+      <div class="cat-index-item">
+        <div>
+          <img src="http://placekitten.com/g/231/231" >
+          <br /><a href="<%= cat_url(cat) %>">Rent <%= cat.name %></a>
+        </div>
+      </div>
     <% end %>
-    </ul>
-
-<a href="<%= new_cat_url %>">Create a New Cat </a>
+  </section>
+</section>
